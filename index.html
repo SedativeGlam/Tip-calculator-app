@@ -12,7 +12,139 @@
     />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
+  <body
+    class="bg-[#c5e4e7ff] flex flex-col justify-center items-center lg:h-screen md:h-screen h-auto "
+  >
+    <div
+      style="font-family: 'Space Mono';"
+      class="lg:w-[1000px]  flex flex-col items-center"
+    >
+      <div class="lg:mb-16 lg:my-0 my-10">
+        <img class="w-[70px]" src="./images/logo.svg" alt="logo" />
+      </div>
+
+      <div class="bg-white py-6 pl-8 pr-6 rounded-3xl flex lg:flex-row flex-col gap-10">
+        <!-- Calculator -->
+        <div>
+          <div class="relative">
+            <h1 class="mb-1 font-bold text-[#5e7a7dff] text-[13px]">Bill</h1>
+
+            <input id="bill" type="number"
+              class="px-4 py-2 bg-[#f4fafbff] w-full text-right text-[#00494dff] font-bold placeholder:text-[#7f9c9fff] placeholder:font-bold rounded-[4px] focus:outline-[#26c0abff] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              placeholder="0"
+            >
+              <img
+                class="w-2 absolute top-[40px] left-[18px]"
+                src="/images/icon-dollar.svg"
+                alt="dollar-icon"
+              />
+              
+          </input>
+          </div>
+
+          <div class="my-8">
+            <h2 class="mb-2 font-bold text-[#5e7a7dff] text-[13px]">
+              Select Tip %
+            </h2>
+
+            <div class="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-2 min-w-[300px] gap-3">
+              <button id="0.05"
+                class="bg-[#00494dff] text-[#c5e4e7ff] rounded-[4px] font-bold text-[18px] text-center p-1 hover:bg-[#3bc3caff] hover:text-[#00494dff] transition duration-300"
+              >
+                5%
+              </button>
+
+              <button id="0.1"
+                class="bg-[#00494dff] text-[#c5e4e7ff] text-[16px] font-bold rounded-[4px] text-center p-1 hover:bg-[#3bc3caff] hover:text-[#00494dff] transition duration-300"
+              >
+                10%
+              </button>
+
+              <button id="0.15"
+                class="bg-[#00494dff] text-[#c5e4e7ff] text-[16px] font-bold rounded-[4px] text-center p-1 hover:bg-[#3bc3caff] hover:text-[#00494dff] transition duration-300"
+              >
+                15%
+              </button>
+
+              <button id="0.25"
+                class="bg-[#00494dff] text-[#c5e4e7ff] text-[16px] font-bold rounded-[4px] text-center p-1 hover:bg-[#3bc3caff] hover:text-[#00494dff] transition duration-300"
+              >
+                25%
+              </button>
+
+              <button id="0.50"
+                class="bg-[#00494dff] text-[#c5e4e7ff] text-[16px] font-bold rounded-[4px] text-center p-1 hover:bg-[#3bc3caff] hover:text-[#00494dff] transition duration-300"
+              >
+                50%
+              </button>
+
+              <input id="custom-value"
+              type="number"
+                placeholder="Custom"
+                class="bg-[#f4fafbff] placeholder:text-[#5e7a7dff] placeholder-text-center text-[16px] font-bold rounded-[4px] text-center p-1 w-[100px] focus:outline-[#26c0abff] text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              />
+            </div>
+          </div>
+
+          <div class="relative">
+            <div
+              class="mb-1 font-bold text-[13px] flex justify-between items-center"
+            >
+              <h3 class="text-[#5e7a7dff]">
+                Number of People
+              </h3>
+
+              <span id="error-msg" class="text-red-400 hidden">Can't be zero</span>
+            </div>
+
+    
+            <input id="num-of-people" type="number"
+              class="px-4 py-2 bg-[#f4fafbff] w-full text-right text-[#00494dff] font-bold placeholder:text-[#7f9c9fff] placeholder:font-bold rounded-[4px] focus:outline-[#26c0abff] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              placeholder="0"
+            >
+              <img
+                class="w-2 absolute top-[40px] left-[18px]"
+                src="/images/icon-person.svg"
+                alt="person-icon"
+              />
+          </div>
+        </div>
+
+        <!-- Calculation total -->
+        <div
+          class="bg-[#00494dff] px-8 pt-10 pb-6 w-[310px] rounded-2xl flex flex-col lg:gap-0 gap-8 justify-between"
+        >
+          <div>
+            <!-- Tip amount -->
+            <div class="flex justify-between items-center">
+              <p class="text-[#c5e4e7ff] text-[13px] font-bold leading-[115%]">
+                Tip Amount
+                <br />
+                <span class="text-[12px] text-[#7f9c9fff]">/person</span>
+              </p>
+              <span id="tip-amount" class="lg:text-[30px] text-[25px] text-[#26c0abff] font-bold">$0.00</span>
+            </div>
+
+            <!-- Total -->
+            <div class="flex justify-between items-center mt-8">
+              <p class="text-[#c5e4e7ff] text-[13px] font-bold leading-[115%]">
+                Total
+                <br />
+                <span class="text-[12px] text-[#7f9c9fff]">/person</span>
+              </p>
+              <span id="total-per-person" class="lg:text-[30px] text-[25px] text-[#26c0abff] font-bold">$0.00</span>
+            </div>
+          </div>
+
+          <button id="reset"
+            class="w-full bg-[#2a6265ff] text-[#00494dff] p-2 rounded-[5px] font-bold uppercase hover:bg-[#c5e4e7ff] transition duration-300"
+          >
+            Reset
+          </button>
+        </div>
+      </div>
+    </div>
+
     <script src="index.js"></script>
   </body>
 </html>
